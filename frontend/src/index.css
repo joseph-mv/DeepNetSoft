@@ -31,7 +31,7 @@
  
 } */
 
-.menuBg {
+.heroBg {
  
   background: linear-gradient(
     to bottom, 
@@ -45,6 +45,19 @@
     background-position: -150px 0;
   }
 }
+
+.menuHeaderBg{
+  background:linear-gradient(
+    to bottom, 
+    rgba(0, 0, 0, 0.592) 0%,
+   rgba(0, 0, 0, 0.936) 100% 
+),  url('../src/assets/images//menuHeader.png');
+  height: 79px;
+  background-size: contain;
+  background-repeat: repeat-x;
+}
+
+
 
 
 

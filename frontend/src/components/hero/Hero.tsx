@@ -1,6 +1,6 @@
 export const Hero:React.FC = () => {
   return (
-    <div className="menuBg flex flex-col items-center justify-center">
+    <div className="heroBg flex flex-col items-center justify-center">
       <h1 className="text-8xl drop-shadow-3d " data-text="MENU">
         MENU
       </h1>
