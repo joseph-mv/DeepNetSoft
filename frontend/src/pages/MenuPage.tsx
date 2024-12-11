@@ -1,15 +1,15 @@
-import { Footer } from "../components/footer/Footer"
-import { Header } from "../components/header/Header"
-import { Menu } from "../components/menu/Menu"
+import { Footer } from "../components/footer/Footer";
+import { Header } from "../components/header/Header";
+import { Hero } from "../components/hero/Hero";
 
 const MenuPage = () => {
   return (
     <div>
-        <Header/>
-       <Menu/>
-       <Footer/>
+      <Header />
+      <Hero />
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default MenuPage
+export default MenuPage;

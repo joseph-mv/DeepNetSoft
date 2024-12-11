@@ -12,8 +12,8 @@ import { FaLocationPin } from "react-icons/fa6";
 
 export const Footer: React.FC = () => {
   return (
-    <>
-    <div className="m-4 flex flex-col lg:flex-row items-center justify-center  gap-4">
+    <div className="pt-20">
+    <div className="m-4 relative flex flex-col lg:flex-row items-center justify-center  gap-4">
       <div className="relative  border border-white rounded-lg w-[373px] h-[134px]  ">
         <div className="absolute flex gap-2 -translate-y-[50%] top-0  left-[50%] -translate-x-[50%]">
           <img
@@ -103,6 +103,6 @@ export const Footer: React.FC = () => {
           </a>
         </div>
       </div>
-    </>
+    </div>
   );
 };
