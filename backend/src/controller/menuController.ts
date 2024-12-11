@@ -1,23 +1,58 @@
+
+
 import { Request, Response } from "express";
-import Menu from "../model/menu"
+import Menu from "../model/menu";
+
+export const createMenu = async (req: Request, res: Response) => {
+  try {
+    const menu = new Menu(req.body);
+    await menu.save();
+    res.status(201).json(menu);
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+export const getMenus = async (req: Request, res: Response) => {
+  try {
+    const menus = await Menu.find();
+    res.status(200).json(menus);
+  } catch (error) {
+    res.status(400).json({ error: "Internal server error" });
+  }
+};
 
 
-export const createMenu=async(req:Request,res:Response)=>{
-    try{
-        const menu=new Menu(req.body)
-        await menu.save()
-        res.status(201).json(menu)
-    }catch(error){
-        res.status(500).json({ error: 'Internal server error' });
+
+export const addMenuItem = async (req: Request, res: Response) => {
+  const { menuId } = req.params;
+  const { name, description, price } = req.body;
+
+  if (!name || !description || !price) {
+     res.status(400).send('Missing required fields');
+  }
+
+  const newItem= {
+    name,
+    description,
+    price
+  } 
+
+  try {
+    const menu = await Menu.findById(menuId);
+
+    if (!menu) {
+       res.status(404).send('Menu not found');
+    }else{
+      menu.items.push(newItem);
+      await menu.save();
     }
+
+    
+
+    res.status(200).send('Menu item added successfully');
+  } catch (error) {
+    res.status(500).send('Error adding menu item: ');
+  }
 }
 
-
-    export const getMenus = async (req: Request, res: Response) => {
-        try {
-          const menus = await Menu.find();
-          res.status(200).json(menus);
-        } catch (error) {
-          res.status(400).json({ error:'Internal server error' });
-        }
-      };

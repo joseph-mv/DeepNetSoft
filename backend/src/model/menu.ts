@@ -1,6 +1,6 @@
 import { Schema, model} from 'mongoose';
 
-interface IMenuItem {
+export interface IMenuItem {
   name: string;
   description: string;
   price: number;
@@ -23,6 +23,8 @@ const MenuSchema = new Schema<IMenu>({
   description: { type: String, required: true },
   items: [MenuItemSchema],
 });
+
+
 
 const Menu = model<IMenu>('Menu', MenuSchema);
 export default Menu;
