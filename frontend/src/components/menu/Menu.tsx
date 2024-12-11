@@ -1,4 +1,4 @@
-export const Menu = () => {
+export const Menu:React.FC = () => {
   return (
     <div className="menuBg flex flex-col items-center justify-center">
       <h1 className="text-8xl drop-shadow-3d " data-text="MENU">

@@ -28,7 +28,7 @@ export const Header: React.FC = () => {
         />
         <div  className=" hidden md:flex flex-col text-[28px] font-bold ">
           <h1 ><span className="text-blue">DEEP</span> NET</h1>
-          <h1>SOFT</h1>
+          <h1 className="text-gray">SOFT</h1>
         </div>
       </div>
       <button className="md:hidden relative z-20 w-[30px]  h-[20px]">
