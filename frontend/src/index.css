@@ -2,14 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@import url('https://fonts.googleapis.com/css2?family=Kelly+Slab&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family:"Kelly Slab" Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme:light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: #FFFFFF;
+  background-color: #121618;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,10 +23,28 @@
 }
 
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
   }
  
+} */
+
+.menuBg {
+ 
+  background: linear-gradient(
+    to bottom, 
+    rgba(0, 0, 0, 0.418) 0%,
+   rgba(0, 0, 0, 0.679) 100% 
+), url('../src/assets/images/menuBg.jpg') ;
+  height: 311px;
+  background-size: cover;
+  /* Media query for screens with a maximum width of 400px */
+  @media screen and (max-width: 500px) {
+    background-position: -150px 0;
+  }
 }
+
+
+

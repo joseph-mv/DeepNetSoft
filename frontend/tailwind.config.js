@@ -5,7 +5,18 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      dropShadow: {
+        '3d': [
+          '4px 4px 0 #800020',
+         
+        ]
+      },
+      colors:{
+        'blue':'#0796EF',
+        'gray':'#BBBBBB'
+      }
+    },
   },
   plugins: [],
 }
