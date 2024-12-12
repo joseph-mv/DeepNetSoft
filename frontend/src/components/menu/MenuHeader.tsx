@@ -64,7 +64,7 @@ console.log(menu,"first render")
         </button>
         <FaArrowAltCircleLeft
           onClick={handleLeftClick}
-          className="text-2xl my-auto  cursor-pointer hover:scale-105"
+          className="relative z-10 text-2xl my-auto  cursor-pointer hover:scale-105"
         />
         <ul className="flex gap-5   overflow-hidden  sm:w-[calc(100vw-18rem)] w-[calc(100vw-15rem)]">
           {modifiedMenus?.map((menu: IMenu, index) => (
@@ -77,6 +77,7 @@ console.log(menu,"first render")
             </li>
           ))}
         </ul>
+       
         <FaArrowAltCircleRight
           onClick={handleRightClick}
           className="text-2xl my-auto cursor-pointer hover:scale-105"

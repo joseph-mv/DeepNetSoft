@@ -16,16 +16,26 @@ connectDB();
 
 const app: Application = express();
 
-// CORS configuration
-const corsOptions = {
-  origin: 'https://deep-net-soft-five.vercel.app/', // Replace with your allowed origin(s)
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
-  optionsSuccessStatus: 204
-};
 
-// Use CORS middleware
-app.use(cors(corsOptions));
+const allowedOrigins: string[] = [
+  'https://deep-net-soft-five.vercel.app',
+  'https://deep-net-soft-five.vercel.app/menu',
+  'http://localhost:5173'
+  
+];
+
+app.use(cors({
+  origin: function(origin, callback) {
+    console.log('Request Origin:', origin); // Log the origin
+    if (typeof origin === 'undefined' || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: 'GET,POST,PUT,DELETE',
+  credentials: true
+}));
 
 
 // Middleware
