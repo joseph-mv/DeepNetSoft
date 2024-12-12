@@ -5,6 +5,7 @@ export interface IMenuItem {
   }
   
  export interface IMenu  {
+  _id?:string
     name: string;
     description: string;
     items: IMenuItem[];
