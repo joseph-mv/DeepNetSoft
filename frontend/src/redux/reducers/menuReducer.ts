@@ -18,6 +18,7 @@ const initialState: MenuState = {
       setMenus: (state, action: PayloadAction<IMenu[]>) => {
         console.log(action.payload)
         state.menus = action.payload;
+        state.selectedMenu=action.payload[0]
       },
       addMenu: (state, action: PayloadAction<IMenu>) => {
         console.log(action.payload)
@@ -30,14 +31,9 @@ const initialState: MenuState = {
       addItem: (state, action: PayloadAction<{ _id: string; item: IMenuItem }>) => {
         const { _id, item } = action.payload;
         console.log(_id,item)
-        const menu =state.menus.find(menu =>{ 
-          console.log(menu)
-          return menu._id === _id});
-        console.log(menu)
-        if (menu) {
-          menu.items.push(item);
-          
-        }
+        const index =state.menus.findIndex(menu => menu._id === _id);
+        state.menus[index].items.push(item)
+        state.selectedMenu?.items.push(item)
       },
     },
   });

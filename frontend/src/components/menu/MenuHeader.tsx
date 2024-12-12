@@ -50,7 +50,7 @@ export const MenuHeader: React.FC = () => {
     }
   };
   const handleSelect = (menu: IMenu) => {
-
+console.log(menu,"first render")
     dispatch(selectMenu({ menu }));
   };
   return (
@@ -67,7 +67,7 @@ export const MenuHeader: React.FC = () => {
           className="text-2xl my-auto  cursor-pointer hover:scale-105"
         />
         <ul className="flex gap-5   overflow-hidden  w-[calc(100vw-18rem)] ">
-          {modifiedMenus.map((menu: IMenu, index) => (
+          {modifiedMenus?.map((menu: IMenu, index) => (
             <li
               onClick={() => handleSelect( menu)}
               key={index}
