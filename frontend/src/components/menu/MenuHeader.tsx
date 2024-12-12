@@ -57,7 +57,7 @@ console.log(menu,"first render")
     <div className="menuHeaderBg text-xl p-4 flex justify-between items-center">
       <div className="flex gap-4">
         <button
-          className="bg-green-500 min-w-40 m-auto p-2 text-white  rounded hover:bg-green-600 transition"
+          className="bg-green-500 sm:min-w-40 text-nowrap m-auto p-2 text-white  rounded hover:bg-green-600 transition"
           onClick={handleAddMenu}
         >
           Add Menu
@@ -66,7 +66,7 @@ console.log(menu,"first render")
           onClick={handleLeftClick}
           className="text-2xl my-auto  cursor-pointer hover:scale-105"
         />
-        <ul className="flex gap-5   overflow-hidden  w-[calc(100vw-18rem)] ">
+        <ul className="flex gap-5   overflow-hidden  sm:w-[calc(100vw-18rem)] w-[calc(100vw-15rem)]">
           {modifiedMenus?.map((menu: IMenu, index) => (
             <li
               onClick={() => handleSelect( menu)}

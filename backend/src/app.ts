@@ -16,6 +16,18 @@ connectDB();
 
 const app: Application = express();
 
+// CORS configuration
+const corsOptions = {
+  origin: 'https://deep-net-soft-five.vercel.app/', // Replace with your allowed origin(s)
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+  optionsSuccessStatus: 204
+};
+
+// Use CORS middleware
+app.use(cors(corsOptions));
+
+
 // Middleware
 app.use(express.json());
 app.use(cors());
