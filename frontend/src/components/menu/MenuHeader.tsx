@@ -5,13 +5,16 @@ import AddMenu from "./popup/AddMenu";
 import axios from "axios";
 import { IMenu } from "./type";
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
-
+import { useDispatch, useSelector } from "react-redux";
+import {setMenus } from '../../redux/reducers/menuReducer.ts'
+import { RootState } from "../../redux/store.ts";
 
 
 export const MenuHeader: React.FC = () => {
+  const dispatch=useDispatch()
+  const menus=useSelector((state:RootState)=>state.menus.menus)
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const BASE_URL = import.meta.env.VITE_BASE_URL;
-  const [menus, setMenus] = useState([]);
   const [menuStInd,setMenuInd]=useState(0)
   const [modifiedMenus,setModifiedMenus]=useState(menus)
 
@@ -19,25 +22,22 @@ export const MenuHeader: React.FC = () => {
   setModifiedMenus(menus.slice(menuStInd))
   }, [menuStInd,menus])
 
-  console.log(modifiedMenus)
-
   const handleAddMenu = () => {
     setIsPopupOpen(true);
   };
 
   useEffect(() => {
     getMenus();
-  }, []);
+  }, [isPopupOpen]);
 
   const getMenus = async () => {
     try {
-      const menu = await axios.get(BASE_URL + "/menus");
-      setMenus(menu.data);
+      const menus = await axios.get(BASE_URL + "/menus");
+      dispatch(setMenus(menus.data))
     } catch (err) {
       console.log(err);
     }
   };
-  console.log(menuStInd)
   const handleLeftClick=()=>{
     if(menuStInd>0){
       setMenuInd(prev=>--prev)
@@ -49,9 +49,9 @@ export const MenuHeader: React.FC = () => {
       setMenuInd(prev=>++prev)
     }
   }
-  // console.log(menus);
+  console.log(menus);
   return (
-    <div className="menuHeaderBg text-2xl p-4 flex justify-between items-center">
+    <div className="menuHeaderBg text-xl p-4 flex justify-between items-center">
       <div className="flex gap-4">
         <button
           className="bg-green-500 min-w-40 m-auto p-2 text-white  rounded hover:bg-green-600 transition"

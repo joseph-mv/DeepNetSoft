@@ -1,7 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addMenu } from "../../../redux/reducers/menuReducer";
 
 function AddMenu({setIsPopupOpen}:{setIsPopupOpen:React.Dispatch<React.SetStateAction<boolean>>}) {
+  const dispatch=useDispatch()
   const [menuName, setMenuName] = useState("");
   const [menuDescription, setMenuDescription] = useState("");
   const BASE_URL = import.meta.env.VITE_BASE_URL
@@ -11,11 +14,12 @@ function AddMenu({setIsPopupOpen}:{setIsPopupOpen:React.Dispatch<React.SetStateA
     const newMenu = {
         name: menuName,
         description: menuDescription,
+        items:[]
       };
       try{
+        dispatch(addMenu(newMenu))
         const response = await axios.post(BASE_URL+'/menus', newMenu);
         console.log('Menu successfully created:', response.data);
-        // You can handle successful response here
         handleClosePopup();
       }catch(error){
         console.error('Error creating menu:', error);
