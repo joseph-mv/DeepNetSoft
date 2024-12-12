@@ -22,8 +22,10 @@ export const MenuItems = () => {
   };
 
   const handleAddNewItem = (item: { name: string; description: string; price: number }) => {
+   if(selectedMenu?._id){
+    dispatch(addItem({_id:selectedMenu?._id,item:item}))
+   }
    
-   dispatch(addItem({_id:selectedMenu?._id,item:item}))
         // const response = await axios.post(BASE_URL+'/menus', newMenu);
     console.log("New item added:", item);
   };
