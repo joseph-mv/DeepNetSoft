@@ -4,7 +4,7 @@ import { IMenuItem } from "./type";
 import { useState } from "react";
 import AddItemPopup from "./popup/AddItem";
 import { addItem } from "../../redux/reducers/menuReducer";
-import { getDots } from "../../utils/getdots";
+// import { getDots } from "../../utils/getdots";
 import axios from "axios";
 
 import cocktail2 from '../../assets/images/cocktail2.png'
