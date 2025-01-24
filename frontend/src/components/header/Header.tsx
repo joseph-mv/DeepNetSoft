@@ -16,7 +16,6 @@ export const Header: React.FC = () => {
       document.body.classList.remove("fixed", "w-full");
     }
   }, [isOpen]);
-console.log(location.pathname)
   return (
     <header className="flex relative p-3 md:h-[100px] h-[40px] md:pt-12 justify-end items-center">
       <div className="absolute flex gap-2 -translate-y-[50%] top-[100%] md:left-[20%] left-[50%] -translate-x-[50%]">
