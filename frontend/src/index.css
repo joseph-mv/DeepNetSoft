@@ -14,3 +14,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.heroBg {
+ 
+  background: linear-gradient(
+    to bottom, 
+    rgba(0, 0, 0, 0.418) 0%,
+   rgba(0, 0, 0, 0.679) 100% 
+), url('/images/heroBg.jpg') ;
+  height: 311px;
+  background-size: cover;
+  /* Media query for screens with a maximum width of 400px */
+  @media screen and (max-width: 500px) {
+    background-position: -150px 0;
+  }
+}
+

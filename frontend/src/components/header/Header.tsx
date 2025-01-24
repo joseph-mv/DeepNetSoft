@@ -16,7 +16,7 @@ export const Header: React.FC = () => {
       document.body.classList.remove("fixed", "w-full");
     }
   }, [isOpen]);
-
+console.log(location.pathname)
   return (
     <header className="flex relative p-3 md:h-[100px] h-[40px] md:pt-12 justify-end items-center">
       <div className="absolute flex gap-2 -translate-y-[50%] top-[100%] md:left-[20%] left-[50%] -translate-x-[50%]">
@@ -26,8 +26,8 @@ export const Header: React.FC = () => {
           alt="logo"
         />
         <div className="hidden md:flex flex-col text-[28px] font-bold">
-          <h1><span className="text-blue">DEEP</span> NET</h1>
-          <h1 className="text-gray">SOFT</h1>
+          <h1><span className="text-600">DEEP</span> NET</h1>
+          <h1 className="text-gray-500">SOFT</h1>
         </div>
       </div>
       <button className="md:hidden relative z-20 w-[30px] h-[20px]">
@@ -58,25 +58,25 @@ export const Header: React.FC = () => {
         }`}
       >
         <Link
-          className={`link flex items-center gap-2 p-2 hover:scale-105 ${location.pathname === '/' ? 'text-blue' : ''}`}
+          className={`link flex items-center gap-2 p-2 hover:scale-105 ${location.pathname === '/' ? 'text-blue-600' : ''}`}
           to="/"
         >
           <span>HOME</span>
         </Link>
         <Link
-          className={`link flex items-center gap-2 p-2 hover:scale-105 ${location.pathname === '/menu' ? 'text-blue' : ''}`}
+          className={`link flex items-center gap-2 p-2 hover:scale-105 ${location.pathname === '/menu' ? 'text-blue-600' : ''}`}
           to="/menu"
         >
           <span>MENU</span>
         </Link>
         <Link
-          className={`link flex items-center gap-2 p-2 hover:scale-105 ${location.pathname === '/make-a-reservation' ? 'text-blue' : ''}`}
+          className={`link flex items-center gap-2 p-2 hover:scale-105 ${location.pathname === '/make-a-reservation' ? 'text-blue-600' : ''}`}
           to="/make-a-reservation"
         >
           <span>MAKE A RESERVATION</span>
         </Link>
         <Link
-          className={`link flex items-center gap-2 p-2 hover:scale-105 ${location.pathname === '/contact-us' ? 'text-blue' : ''}`}
+          className={`link flex items-center gap-2 p-2 hover:scale-105 ${location.pathname === '/contact-us' ? 'text-blue-600' : ''}`}
           to="/contact-us"
         >
           <span>CONTACT US</span>
