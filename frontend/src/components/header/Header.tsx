@@ -30,7 +30,7 @@ console.log(location.pathname)
           <h1 className="text-gray-500">SOFT</h1>
         </div>
       </div>
-      <button className="md:hidden relative z-20 w-[30px] h-[20px]">
+      <button className="md:hidden relative z-20 w-[30px] h-[20px] ">
         <label
           className="flex label flex-col gap-1 w-[30px] h-[20px]"
           htmlFor="burger"
