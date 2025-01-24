@@ -5,11 +5,14 @@ import helmet from 'helmet';
 import { errorHandler } from './middleware/errorHandler';
 import logger from './utils/logger';
 import router from './routes/menuRoutes';
+import connectDB from './config/db';
 
 
 // Load environment variables
 dotenv.config();
 
+// Connect to database
+connectDB();
 const app: Application = express();
 
 const allowedOrigins: string[] = [
