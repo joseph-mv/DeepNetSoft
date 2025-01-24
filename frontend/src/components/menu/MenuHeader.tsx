@@ -2,9 +2,9 @@ import { useState } from "react";
 import AddMenu from "./popup/AddMenu";
 
 export const MenuHeader: React.FC = () => {
-  const [isPopupOpen, setIsPopupOpen] = useState(true);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const handleAddMenu = () => {
-    setIsPopupOpen(false);
+    setIsPopupOpen(true);
   };
   return (
     <div className="menuHeaderBg text-xl p-4 flex justify-between items-center">

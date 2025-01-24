@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addMenu } from "../../../redux/reducers/menuReducer";
-
+import 'react-toastify/dist/ReactToastify.css';
 function AddMenu({
   setIsPopupOpen,
 }: {
@@ -24,7 +24,6 @@ function AddMenu({
       dispatch(addMenu(newMenu));
       const response = await axios.post(BASE_URL + "/menus", newMenu);
       console.log("Menu successfully created:", response.data);
-      handleClosePopup();
     } catch (error) {
       console.error("Error creating menu:", error);
     }
@@ -76,6 +75,7 @@ function AddMenu({
           </div>
         </form>
       </div>
+      
     </div>
   );
 }
