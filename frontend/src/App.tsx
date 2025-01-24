@@ -1,14 +1,14 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
+import { HomePage } from "./pages/HomePage";
 
-import './App.css'
 
-function App() {
-
-
+export const App = () => {
   return (
-    <div className='text-red-800'>
-     DeepnetSoft
-    </div>
-  )
-}
-
-export default App
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+     </Routes>
+    </BrowserRouter>
+  );
+};
