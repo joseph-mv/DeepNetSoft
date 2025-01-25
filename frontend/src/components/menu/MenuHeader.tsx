@@ -71,7 +71,7 @@ console.log(menu,"first render")
             <li
               onClick={() => handleSelect( menu)}
               key={index}
-              className={`  cursor-pointer  hover:scale-105 m-2 border-blue-600 border min-w-40 text-center p-2 ${selectedMenu?._id==menu._id ? "bg-blue-600": 'bg-black'}`}
+              className={`  cursor-pointer  hover:scale-105 m-2 border-blue-600 border min-w-40 text-center p-2 ${selectedMenu &&selectedMenu?._id==menu._id ? "bg-blue-600": 'bg-black'}`}
             >
               {menu.name}
             </li>
