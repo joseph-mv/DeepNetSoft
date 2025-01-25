@@ -62,5 +62,24 @@ export const deleteMenuItem = async (req: Request, res: Response) => {
   }
 }
 
+export const editMenuItem = async (req: Request, res: Response) => {
+  const { menuId,index } = req.params;
+  console.log(req.params)
+  try {
+    const menu = await Menu.findById(menuId);
+
+    if (!menu) {
+       res.status(404).send('Menu not found');
+    }else{
+      menu.items[+index]=req.body
+      await menu.save();
+      res.status(200).send('Menu item edited successfully');
+    }
+    
+  } catch (error) {
+    res.status(500).send('Error editing menu item: ');
+  }
+}
+
 
 

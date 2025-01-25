@@ -36,10 +36,20 @@ const menuSlice = createSlice({
       state.menus[menuIndex].items.splice(itemIndex,1)
       state.selectedMenu?.items.splice(itemIndex,1)
     },
+    editItem: (state, action: PayloadAction<{ _id: string; itemIndex: number,item:IMenuItem}>) => {
+      const { _id, itemIndex,item } = action.payload;
+      console.log(_id,itemIndex,item)
+      const menuIndex =state.menus.findIndex(menu => menu._id === _id);
+      state.menus[menuIndex].items[itemIndex]=item
+      if(state.selectedMenu){
+        state.selectedMenu.items[itemIndex]=item
+      }
+    },
+    
   },
   
 });
 
-export const {  addMenu,setMenus,selectMenu,addItem,deleteItem } = menuSlice.actions;
+export const {  addMenu,setMenus,selectMenu,addItem,deleteItem,editItem } = menuSlice.actions;
 
 export default menuSlice.reducer;
