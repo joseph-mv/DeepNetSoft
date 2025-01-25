@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IMenu, MenuState } from "./type";
+import { IMenu, IMenuItem, MenuState } from "./type";
 
 
 const initialState: MenuState = {
@@ -23,10 +23,17 @@ const menuSlice = createSlice({
       const {menu }= action.payload;
        state.selectedMenu=menu
     },
+    addItem: (state, action: PayloadAction<{ _id: string; item: IMenuItem }>) => {
+      const { _id, item } = action.payload;
+      console.log(_id,item)
+      const index =state.menus.findIndex(menu => menu._id === _id);
+      state.menus[index].items.push(item)
+      state.selectedMenu?.items.push(item)
+    },
   },
   
 });
 
-export const {  addMenu,setMenus,selectMenu } = menuSlice.actions;
+export const {  addMenu,setMenus,selectMenu,addItem } = menuSlice.actions;
 
 export default menuSlice.reducer;

@@ -25,5 +25,23 @@ export const getMenus = async (req: Request, res: Response) => {
   }
 };
 
+export const addMenuItem = async (req: Request, res: Response) => {
+  const { menuId } = req.params;
+  try {
+    const menu = await Menu.findById(menuId);
+
+    if (!menu) {
+       res.status(404).send('Menu not found');
+    }else{
+      menu.items.push(req.body);
+      await menu.save();
+      res.status(200).send('Menu item added successfully');
+    }
+    
+  } catch (error) {
+    res.status(500).send('Error adding menu item: ');
+  }
+}
+
 
 

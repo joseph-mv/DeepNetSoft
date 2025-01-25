@@ -57,7 +57,7 @@ console.log(menu,"first render")
     <div className="menuHeaderBg text-xl p-4 flex justify-between items-center">
       <div className="flex gap-4">
         <button
-          className="bg-green-500 cursor-pointer sm:min-w-40 text-nowrap m-auto p-2 text-white  rounded hover:bg-green-600 transition"
+          className="bg-green-500 z-10 cursor-pointer sm:min-w-40 text-nowrap m-auto p-2 text-white  rounded hover:bg-green-600 transition"
           onClick={handleAddMenu}
         >
           Add Menu
