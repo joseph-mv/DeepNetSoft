@@ -43,5 +43,24 @@ export const addMenuItem = async (req: Request, res: Response) => {
   }
 }
 
+export const deleteMenuItem = async (req: Request, res: Response) => {
+  const { menuId,index } = req.params;
+  console.log(req.params)
+  try {
+    const menu = await Menu.findById(menuId);
+
+    if (!menu) {
+       res.status(404).send('Menu not found');
+    }else{
+      menu.items.splice(+index, 1)
+      await menu.save();
+      res.status(200).send('Menu item deleted successfully');
+    }
+    
+  } catch (error) {
+    res.status(500).send('Error deleting menu item: ');
+  }
+}
+
 
 

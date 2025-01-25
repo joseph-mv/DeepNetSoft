@@ -2,9 +2,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../redux/store";
 import { useState } from "react";
 import AddItemPopup from "./popup/AddItem";
-import { addItem } from "../../redux/reducers/menuReducer";
+import { addItem, deleteItem } from "../../redux/reducers/menuReducer";
 import axios from "axios";
 import { IMenuItem } from "../../redux/reducers/type";
+import { FaEdit, FaTrash } from "react-icons/fa";
+import DeletePopup from "./popup/DeleteItem";
 
 export const MenuItems = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -15,6 +17,8 @@ export const MenuItems = () => {
   console.log(selectedMenu, "selectedMenu");
   const dispatch = useDispatch();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
+  const [deleteIndex, setDeleteIndex] = useState(-1);
 
   const handleAddItem = () => {
     setIsPopupOpen(true);
@@ -23,6 +27,13 @@ export const MenuItems = () => {
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
+  const handleOpenDeletePopup = (index:number) => {
+    setIsDelete(true);
+    setDeleteIndex(index);
+  }
+  const handleCloseDeletePopup=()=>{
+    setIsDelete(false);
+  }
 
   const handleAddNewItem = async (item: {
     name: string;
@@ -40,16 +51,29 @@ export const MenuItems = () => {
     }
   };
 
+  const handleDeleteItem = async (index:number) => {
+    if (selectedMenu?._id) {
+      dispatch(deleteItem({ _id: selectedMenu?._id, itemIndex:index }));
+    }
+    try {
+      await axios.delete(`${BASE_URL}/menus/${selectedMenu?._id}/items/${index}`);
+    } catch (error) {
+      console.error("Error adding item:", error);
+    }
+handleCloseDeletePopup()
+
+  }
+
   return (
     <div className="min-h-[500px]  flex items-center justify-center  ">
       <div className="relative p-4 min-h-80 md:w-[80%] w-[100%] pb-40  border  border-gray m-20">
        <img className="absolute -left-10 -top-32 w-40" src="/images/cocktail2.png" alt="" />
        
-        <img className="absolute right-0 bottom-0 w-40" src="/images/cocktail.png"  alt="" />
+        <img className="absolute -z-10 right-0 bottom-0 w-40" src="/images/cocktail.png"  alt="" />
         {menus.length > 0 && (
           <button
             onClick={handleAddItem}
-            className="absolute top-4  right-4 z-10 bg-green-500 text-4xl font-extrabold text-white rounded-full w-10 h-10 "
+            className="absolute top-4 cursor-pointer right-4 z-10 bg-green-500 text-4xl font-extrabold text-white rounded-full w-10 h-10 hover:scale-105"
           >
             +
           </button>
@@ -64,15 +88,22 @@ export const MenuItems = () => {
           {selectedMenu?.items.map((item: IMenuItem, index: number) => (
             <li
               key={index}
-              className="p-4 m-auto  sm:max-w-[380px] w-[100%] rounded-lg shadow-md"
+              className="p-4 m-auto flex gap-10  sm:max-w-[380px] w-[100%] rounded-lg shadow-md"
             >
-              <div className="menu-item text-nowrap flex text-2xl font-bold justify-between border-b border-dotted pb-2">
+              <div className="w-96">
+              <div className=" text-nowrap flex text-2xl font-bold justify-between border-b border-dotted pb-2">
                 <span className="text-left">{item.name}</span>
                 {/* <span className="">{getDots(item.name, item.price)}</span> */}
                 <span className="text-right">$ {item.price}</span>
               </div>
-
               <p>{item.description}</p>
+              </div>
+              
+            <div className="flex flex-col justify-between">
+
+              <FaTrash  className="text-red-700 cursor-pointer hover:scale-105" onClick={()=>handleOpenDeletePopup(index)}/>
+              <FaEdit className="text-orange-400 cursor-pointer hover:scale-105"/>
+            </div>
             </li>
           ))}
         </ul>
@@ -82,6 +113,11 @@ export const MenuItems = () => {
           onClose={handleClosePopup}
           onSubmit={handleAddNewItem}
         />
+        <DeletePopup
+        isOpen={isDelete}
+        onClose={handleCloseDeletePopup}
+        index={deleteIndex}
+        onConfirm={handleDeleteItem}/>
       </div>
     </div>
   );
